@@ -33,6 +33,18 @@ describe Card do
       expect { card.deduct(1) }.to change { card.balance }.by -1
     end
 
+  describe '#touch_in?' do
+    it 'should return whether card has been touched in' do
+      expect(card.touch_in?).to be true
+    end
+  end
+
+ describe '#in_journey?' do
+   it 'should return that card is in journey' do
+     card.touch_in?
+     expect(card).to be_in_journey
+   end
+ end
 
   end
 end
