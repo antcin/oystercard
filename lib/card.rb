@@ -1,11 +1,11 @@
 class Card
   LIMIT = 90
   attr_reader :balance
-  attr_accessor :touch_in, :in_journey
 
   def initialize(limit = LIMIT)
     @balance = 0
     @limit = limit
+    @touch = false
   end
 
   def top_up(amount)
@@ -17,13 +17,18 @@ class Card
     @balance -= amount
   end
 
-  def touch_in?
-    !@touch_in
+  def touch_in
+    @touch = true
+  end
+
+  def touch_out
+    @touch = false
   end
 
   def in_journey?
-   !@in_journey
+    @touch
   end
+
 
 
 end
