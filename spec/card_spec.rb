@@ -5,7 +5,7 @@ describe Card do
 
   describe '#balance' do
     it 'should return a balance of 0' do
-      expect(card.balance).to eq 0
+    expect(card.balance).to eq 0
     end
   end
 
@@ -13,9 +13,11 @@ describe Card do
     it 'responds to top_up with one argument' do
       expect(card).to respond_to(:top_up).with(1).argument
     end
+
     it 'should top up the balance' do
       expect { card.top_up(1) }.to change { card.balance }.by 1
     end
+
     it 'raises an error when balance exceeds the maximum limit' do
       limit = Card::LIMIT
       card.top_up(limit)
@@ -46,21 +48,12 @@ describe Card do
     end
   end
 
-  describe '#touch_out' do
+  describe 'touch_out' do
     it 'should return that card has touched out' do
       card.touch_in
       card.touch_out
       expect(card).not_to be_in_journey
     end
-  end
-
-
-
-
-
-
-
-
-
-  end
+   end
+end
 end
