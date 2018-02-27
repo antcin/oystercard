@@ -37,6 +37,7 @@ describe Card do
 
   describe '#touch_in' do
     it 'should return that card has touched in' do
+      card.top_up(1)
       card.touch_in
       expect(card).to be_in_journey
     end
@@ -50,10 +51,18 @@ describe Card do
 
   describe 'touch_out' do
     it 'should return that card has touched out' do
+      card.top_up(1)
       card.touch_in
       card.touch_out
       expect(card).not_to be_in_journey
     end
    end
+
+  context 'minimum balance' do
+    it 'cannot touch in if minimum balance not topped up' do
+      min_bal = Card::MINIMUM_BALANCE
+      expect{ card.touch_in }.to raise_error "Cannot touch in. Minimum balance of #{min_bal} not reached."
+    end
+  end
 end
 end

@@ -1,5 +1,6 @@
 class Card
   LIMIT = 90
+  MINIMUM_BALANCE = 1
   attr_reader :balance
 
   def initialize(limit = LIMIT)
@@ -18,6 +19,7 @@ class Card
   end
 
   def touch_in
+    raise "Cannot touch in. Minimum balance of #{MINIMUM_BALANCE} not reached." if @balance < MINIMUM_BALANCE
     @touch = true
   end
 
@@ -28,7 +30,4 @@ class Card
   def in_journey?
     @touch
   end
-
-
-
 end
